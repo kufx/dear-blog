@@ -9,4 +9,4 @@ data/secret.key
 # 系统文件
 .DS_Store
 Thumbs.db
-config.json/
+config.json
