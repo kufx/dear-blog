@@ -1,0 +1,566 @@
+/* Dear Blog - 极简单色纸感设计规范
+   视觉复刻 Bear Blog / Dear 主题的单栏纯文本排版，
+   令牌遵循用户极简规范：仅黑白灰 + 少量金/红语义色。 */
+
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --text-light: #444444;
+  --faint: #777777;
+  --border: #d0d0d0;
+  --box-border: #b8b8b8;
+  --box-bg: #f7f7f7;
+  --gold-text: #9a7b12;
+  --danger-text: #c0392b;
+  --font: "LXGW 975 Yuan SC 400W", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace;
+  --width: 760px;
+}
+
+html.dark {
+  --bg: #0c0c0c;
+  --text: #f0f0f0;
+  --text-light: #bbbbbb;
+  --faint: #999999;
+  --border: #2a2a2a;
+  --box-border: #3a3a3a;
+  --box-bg: #161616;
+  --gold-text: #d4af37;
+  --danger-text: #ff9b8d;
+}
+
+::selection {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+html.dark ::selection {
+  background: #f0f0f0;
+  color: #0c0c0c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  font-weight: 400;
+  line-height: 1.6;
+  font-size: 0.85rem;
+  margin: auto;
+  padding: 2rem 1.5rem;
+  max-width: var(--width);
+  color: var(--text-light);
+  background-color: var(--bg);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 1.5rem 0 0.6rem;
+}
+
+h1 { font-size: 1.75rem; margin-top: 0.85rem; }
+h2 { font-size: 1.05rem; }
+h3 { font-size: 0.95rem; }
+h4, h5, h6 { font-size: 0.85rem; }
+
+p { margin: 0.85rem 0; }
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+a:hover {
+  border-bottom: 1px solid var(--text);
+  text-underline-offset: 2px;
+}
+
+strong, b { color: var(--text); font-weight: 600; }
+em, i { color: var(--text-light); }
+
+time, .intro {
+  color: var(--faint);
+  font-size: 0.76rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 1.5rem 0;
+}
+
+blockquote {
+  margin: 0.85rem 0;
+  padding-left: 1rem;
+  border-left: 1px solid var(--box-border);
+  color: var(--text-light);
+  font-style: italic;
+}
+blockquote p { margin: 0; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  padding: 0.1rem 0.3rem;
+  background-color: var(--box-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+pre {
+  background-color: var(--box-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  overflow-x: auto;
+}
+pre code {
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.85rem 0;
+  font-size: 0.8rem;
+}
+th, td {
+  padding: 0.45rem 0.4rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  color: var(--faint);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* ---- 页头：左标题 + 导航 ---- */
+header {
+  padding: 0 0 1.25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  display: inline-block;
+  border: none;
+}
+.title:hover { border: none; }
+.title h1 { font-size: 1.75rem; margin: 0; }
+
+nav p {
+  margin: 0.6rem 0 0;
+  font-size: 0.82rem;
+}
+nav a {
+  margin-right: 0.7rem;
+  color: var(--text-light);
+}
+nav a:hover { border-bottom: 1px solid var(--text); color: var(--text); }
+nav a.current {
+  color: var(--gold-text);
+  border-bottom: 1px solid var(--gold-text);
+}
+
+/* ---- 文章列表（Dear 结构：日期列 + 标题） ---- */
+ul.posts {
+  list-style-type: none;
+  padding: 0;
+  margin: 0.85rem 0;
+}
+ul.posts li {
+  display: flex;
+  margin: 0.45rem 0;
+  font-size: 0.85rem;
+}
+ul.posts li span {
+  flex: 0 0 115px;
+  color: var(--faint);
+  font-size: 0.76rem;
+  padding-top: 0.05rem;
+}
+ul.posts li a { color: var(--text); }
+ul.posts li a:visited { color: var(--text-light); }
+
+.tags {
+  margin-top: 1.5rem;
+  color: var(--faint);
+  font-size: 0.76rem;
+}
+.tags a { color: var(--text-light); margin-right: 0.6rem; }
+.tags a:hover { color: var(--text); border-bottom: 1px solid var(--text); }
+
+/* ---- 标签页：描边 chip + 计数胶囊（规范 chip 条款） ---- */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.1rem 0;
+}
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  border: 1px solid var(--box-border);
+  border-radius: 6px;
+  padding: 0.15rem 0.55rem;
+  transition: border-color 0.2s ease;
+}
+.tag-chip:hover {
+  border-color: var(--text);
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
+}
+.tag-count {
+  display: inline-block;
+  min-width: 1.3em;
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--faint);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0 0.35em;
+  line-height: 1.5;
+}
+.tag-chip:hover .tag-count { color: var(--text); }
+
+.pager { font-size: 0.82rem; }
+
+/* ---- 搜索表单 ---- */
+.search-form {
+  display: flex;
+  gap: 0.6rem;
+  margin: 1.1rem 0;
+}
+.search-form input {
+  flex: 1;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+}
+.search-form input:focus {
+  outline: none;
+  border-color: var(--text);
+}
+.search-form button {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--box-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.search-form button:hover {
+  border-color: var(--text);
+  border-width: 1px;
+  font-weight: 600;
+}
+
+.empty-note { color: var(--faint); }
+
+/* ---- 页脚：居中弱化 + 主题切换 ---- */
+footer {
+  margin-top: 2.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+footer p {
+  font-size: 0.75rem;
+  color: var(--faint);
+  margin: 0 0 0.6rem;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--box-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.theme-toggle:hover { border-color: var(--text); color: var(--text); }
+
+/* 暗色下太阳/月亮图标互斥 */
+.icon-sun, .icon-moon { display: inline-flex; line-height: 0; }
+html:not(.dark) .icon-sun { display: none; }
+html.dark .icon-moon { display: none; }
+
+/* ---- 可聚焦反馈 ---- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---- 响应式 ---- */
+@media (max-width: 640px) {
+  body { padding: 1.2rem 1rem; }
+  h1 { font-size: 1.4rem; }
+  .title h1 { font-size: 1.4rem; }
+  ul.posts li { flex-direction: row; }
+  ul.posts li span { flex: 0 0 92px; }
+  table { font-size: 0.76rem; }
+}
+
+@media (max-width: 400px) {
+  .theme-toggle { width: 28px; height: 28px; }
+  nav a { margin-right: 0.5rem; font-size: 0.72rem; }
+  ul.posts li { font-size: 0.78rem; }
+}
+
+/* ============================================================
+   后台（/admin）— 与前台共用同一套令牌，最大宽 900px
+   ============================================================ */
+body.admin {
+  max-width: 900px;
+  padding: 1.5rem 1rem;
+}
+
+.admin-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.76rem;
+  color: var(--faint);
+  margin: 0 0 0.85rem;
+}
+
+.chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  color: var(--text-light);
+  border: 1px solid var(--box-border);
+  border-radius: 6px;
+  padding: 0.1rem 0.5rem;
+}
+.chip:hover { border-color: var(--text); color: var(--text); }
+
+.flash {
+  border: 1px solid var(--box-border);
+  background: var(--box-bg);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.8rem;
+  margin: 0 0 0.85rem;
+}
+.flash-error {
+  border-color: rgba(192,57,43,.32);
+  background: rgba(192,57,43,.10);
+  color: var(--danger-text);
+}
+html.dark .flash-error {
+  border-color: rgba(231,76,60,.4);
+  background: rgba(231,76,60,.15);
+}
+
+.admin-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+.admin-head h1 { margin: 0; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--box-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+}
+.btn:hover { border-color: var(--text); }
+.btn-primary { border-color: var(--text); font-weight: 600; }
+
+.btn-danger {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--danger-text);
+  background: transparent;
+  border: 1px solid rgba(192,57,43,.32);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+.btn-danger:hover { border-color: var(--danger-text); }
+html.dark .btn-danger { border-color: rgba(231,76,60,.4); }
+
+.admin-table { margin: 1.1rem 0; }
+.admin-table td, .admin-table th { padding: 0.45rem 0.5rem; }
+.cell-title a { color: var(--text); }
+.cell-actions { white-space: nowrap; }
+.cell-actions .chip { margin-right: 0.4rem; }
+.inline-form { display: inline; }
+
+.admin-links {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.admin-form { margin: 1.1rem 0; }
+.form-row { margin: 0 0 0.85rem; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem 0.9rem;
+}
+.admin-form label {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--text-light);
+  margin: 0 0 0.3rem;
+}
+.admin-form input[type="text"],
+.admin-form input[type="password"],
+.admin-form input[type="date"],
+.admin-form input[type="number"],
+.admin-form input[type="search"],
+.admin-form textarea {
+  width: 100%;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+}
+.admin-form textarea {
+  font-family: var(--font), var(--font-mono);
+  line-height: 1.7;
+  resize: vertical;
+}
+.admin-form input:focus,
+.admin-form textarea:focus {
+  outline: none;
+  border-color: var(--text);
+}
+.checkbox-row { display: flex; align-items: center; gap: 0.4rem; }
+.checkbox-row label { margin: 0; }
+
+.admin-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.form-error { color: var(--danger-text); }
+
+/* 登录页：内容卡式居中表单（规范弹窗卡条款的静态度用） */
+.login-form {
+  max-width: 420px;
+  margin: 2rem auto 0;
+  background: var(--box-bg);
+  border: 1px solid var(--box-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+.login-form .admin-actions { margin-top: 1.25rem; }
+.login-form + .admin-meta, .admin-meta + .login-form { margin-top: 0; }
+
+@media (max-width: 640px) {
+  .login-form { margin: 1.1rem 0 0; padding: 1rem 1.1rem 1.1rem; }
+}
+
+/* 后台头部的按钮组 */
+.admin-head-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* 文件上传控件：规范化的细描边样式 */
+.admin-form input[type="file"] {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text-light);
+  max-width: 100%;
+}
+.admin-form input[type="file"]::file-selector-button {
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--box-border);
+  border-radius: 6px;
+  padding: 0.35rem 0.7rem;
+  margin-right: 0.6rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.admin-form input[type="file"]::file-selector-button:hover {
+  border-color: var(--text);
+}
+
+/* 上传结果清单 */
+.upload-results {
+  list-style: none;
+  padding: 0;
+  margin: 0.85rem 0;
+}
+.upload-result-item {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.82rem;
+}
+.upload-result-item:first-child { border-top: 1px solid var(--border); }
+.upload-result-item span { color: var(--faint); margin-right: 0.3rem; }
+.upload-result-item.form-error span, .upload-result-item.form-error { color: var(--danger-text); }
+
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .admin-head { flex-direction: column; align-items: flex-start; }
+}

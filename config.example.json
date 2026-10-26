@@ -1,0 +1,30 @@
+{
+  "title": "亲爱的博客",
+  "subtitle": "一个纯文本的极简角落",
+  "author": "Dear",
+  "postsPerPage": 8,
+  "adminPassword": "改成你的密码_或用环境变量ADMIN_PASSWORD",
+  "nav": [
+    {
+      "label": "首页",
+      "href": "/"
+    },
+    {
+      "label": "归档",
+      "href": "/archive"
+    },
+    {
+      "label": "标签",
+      "href": "/tags"
+    },
+    {
+      "label": "搜索",
+      "href": "/search"
+    },
+    {
+      "label": "后台",
+      "href": "/admin"
+    }
+  ],
+  "footer": "由 Dear Blog 驱动 · 复刻 Bear Blog 与 Dear 主题的极简精神"
+}
